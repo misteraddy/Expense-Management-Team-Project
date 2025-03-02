@@ -14,11 +14,11 @@ const LoginPage = () => {
     const checkLogin=(e)=>{
         e.preventDefault();
          validateUser(username,password).then((response)=>{
-         let role=String(response.data);
-          if(role==="Admin")
+         let category=String(response.data);
+          if(category==="Admin")
               navigate('/AdminMenu');
-        else if(role==="Student")
-             navigate('/StudentMenu');
+        else if(category==="Customer")
+             navigate('/CustomerMenu');
         else
            alert("Wrong Userid/Password");
         });

@@ -15,7 +15,7 @@ function App() {
         <Route path='/' element={<LoginPage/>}/>
         <Route path='/Register' element={<RegisterUser /> }/>
         <Route path='/AdminMenu' exact element={<AdminMenu/>}/>
-        <Route path='/CustomerMemu' element={<CustomerMenu/>}/>
+        <Route path='/CustomerMenu' element={<CustomerMenu/>}/>
       </Routes>
       </BrowserRouter>
         
