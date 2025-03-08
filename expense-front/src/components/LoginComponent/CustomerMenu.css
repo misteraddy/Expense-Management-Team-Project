@@ -1,0 +1,187 @@
+/* Navbar Styling */
+.custom-navbar {
+  background: linear-gradient(135deg, #761941, #1a1516); /* Gradient Pink-Red */
+  padding: 12px 20px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  border-bottom: 3px solid #ff3d67; /* Strong Bottom Border */
+}
+
+/* Navbar Title */
+.navbar-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .navbar-title {
+    font-size: 1rem;
+    text-align: center;
+  }
+}
+
+/* Navbar Toggler */
+.navbar-dark .navbar-toggler {
+  border: none;
+  outline: none;
+  padding: 8px;
+  font-size: 1.3rem;
+}
+
+/* Navbar Links Styling */
+.navbar-dark .navbar-nav .nav-link {
+  color: #f9f9f9;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 10px 15px;
+  margin-right: 10px;
+  border-radius: 6px;
+  transition: all 0.3s ease-in-out;
+}
+
+/* Hover Effect for Links */
+.navbar-dark .navbar-nav .nav-link:hover {
+  background: rgba(255, 255, 255, 0.3);
+  color: #ffcc00;
+  transform: translateY(-2px);
+}
+
+/* Dropdown Styling */
+.navbar-dark .navbar-nav .nav-dropdown {
+  border-radius: 6px;
+}
+
+/* Dropdown Menu */
+.navbar-dark .navbar-nav .dropdown-menu {
+  background: linear-gradient(135deg, #c46e7c, #e5810fd5);
+  border: none;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* Dropdown Items */
+.customer-dropdown-item {
+  color: #ffffff !important;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 12px 18px;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Hover Effect for Dropdown Items */
+.customer-dropdown-item:hover {
+  background: #ffcc00;
+  color: #ff3d67 !important;
+  font-weight: bold;
+}
+
+/* Logout Button */
+.navbar-dark .navbar-nav .nav-link:last-child {
+  background: #e63946;
+  border-radius: 6px;
+  padding: 10px 15px;
+  color: white;
+  font-weight: 600;
+}
+
+.navbar-dark .navbar-nav .nav-link:last-child:hover {
+  background: #c92a3a;
+  transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .navbar-dark .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    margin: 10px 0;
+    display: block; /* Makes all nav links full width */
+  }
+
+  .customer-dropdown-item {
+    text-align: center;
+    padding: 14px 0;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Enhancing Navbar for Small Screens */
+@media (max-width: 768px) {
+  .custom-navbar {
+    padding: 10px;
+  }
+
+  .navbar-toggler {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
+
+  .navbar-nav {
+    width: 100%;
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    width: 100%;
+    text-align: center;
+  }
+
+  .customer-dropdown-item {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+/* Responsive Navbar Title */
+@media (max-width: 768px) {
+  .navbar-title {
+    font-size: 1rem;
+    text-align: center;
+    flex-grow: 1; /* Ensures better alignment */
+  }
+}
+
+/* Align Navbar Items for Small Screens */
+@media (max-width: 992px) {
+  .navbar-dark .navbar-nav {
+    text-align: center;
+    width: 100%;
+  }
+
+  .navbar-dark .navbar-nav .nav-link {
+    display: block;
+    margin: 8px 0;
+  }
+}
+
+/* Improved Logout Button */
+.logout-link {
+  background: #e63946;
+  padding: 10px 15px;
+  border-radius: 6px;
+  color: white !important;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.logout-link:hover {
+  background: #c92a3a;
+  transform: scale(1.05);
+}

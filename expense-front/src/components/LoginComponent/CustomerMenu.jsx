@@ -1,181 +1,53 @@
-import React, { useState } from "react";
-import "../../AdminView.css";
+import React from "react";
+import "./CustomerMenu.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Navbar, Nav, NavDropdown, Container } from "react-bootstrap";
 
 const CustomerMenu = () => {
-  const [expenses, setExpenses] = useState([]);
-  const [categories, setCategories] = useState([
-    { name: "Food", description: "Meals and snacks" },
-    { name: "Travel", description: "Transport and trips" },
-  ]);
-
-  const [formData, setFormData] = useState({
-    user: "",
-    amount: "",
-    date: "",
-    category: "",
-    description: "",
-  });
-
-  const [error, setError] = useState("");
-  const [activePage, setActivePage] = useState("expenses");
-  const [newCategory, setNewCategory] = useState("");
-  const [newDescription, setNewDescription] = useState("");
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (!formData.user || !formData.amount || !formData.date || !formData.category || !formData.description) {
-      setError("Please fill all the mandatory fields.");
-      return;
-    }
-    setError("");
-    setExpenses([...expenses, formData]);
-    setFormData({ user: "", amount: "", date: "", category: "", description: "" });
-  };
-
-  const handleDeleteExpense = (index) => {
-    setExpenses(expenses.filter((_, i) => i !== index));
-  };
-
-  const handleAddCategory = () => {
-    if (!newCategory.trim() || !newDescription.trim()) {
-      setError("Both category name and description are required.");
-      return;
-    }
-    if (categories.some((cat) => cat.name === newCategory)) {
-      setError("Category already exists.");
-      return;
-    }
-
-    setCategories([...categories, { name: newCategory, description: newDescription }]);
-    setNewCategory("");
-    setNewDescription("");
-    setError("");
-  };
-
-  const handleDeleteCategory = (index) => {
-    setCategories(categories.filter((_, i) => i !== index));
-  };
-
   return (
-    <div className="container">
-      {/* Sidebar */}
-      <aside className="sidebar">
-        <h1>💰 EMS</h1>
-        <nav>
-          <button onClick={() => setActivePage("expenses")}>Expenses</button>
-          <button onClick={() => setActivePage("category")}>Category</button>
-          <button>Reports</button>
-        </nav>
-      </aside>
+    <Navbar expand="lg" className="navbar-dark custom-navbar">
+      <Container fluid>
+        {/* Brand Title */}
+        <Navbar.Brand className="navbar-title me-auto">
+          EXPENSE MANAGEMENT CUSTOMER MENU
+        </Navbar.Brand>
 
-      {/* Main Content */}
-      <main className="main-content">
-        {activePage === "expenses" && (
-          <>
-            <h1 className="header">Expense Management System</h1>
-            <form className="form-container" onSubmit={handleSubmit}>
-              <select name="user" value={formData.user} onChange={handleChange} required>
-                <option value="">Select User</option>
-                <option value="1 - Sarvagna">1 - Sarvagna</option>
-              </select>
+        {/* Toggle Button */}
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
-              <input type="number" name="amount" placeholder="Amount" value={formData.amount} onChange={handleChange} required />
-              <input type="date" name="date" value={formData.date} onChange={handleChange} required />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ms-auto text-center">
+            {/* Customer Dropdown */}
+            <NavDropdown title="Customer" id="customer-nav-dropdown">
+              <NavDropdown.Item href="/customer-registration">
+                Customer Registration
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/customer-details">
+                Customer Details
+              </NavDropdown.Item>
+            </NavDropdown>
 
-              <select name="category" value={formData.category} onChange={handleChange} required>
-                <option value="">Select Category</option>
-                {categories.map((cat, index) => (
-                  <option key={index} value={cat.name}>{cat.name}</option>
-                ))}
-              </select>
+            {/* Expense Dropdown */}
+            <NavDropdown title="Expense" id="expense-nav-dropdown">
+              <NavDropdown.Item href="/expense-entry">
+                Expense Entry
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/customer-category-list">
+                Category List
+              </NavDropdown.Item>
+              <NavDropdown.Item href="/expense-report">
+                Expense Report
+              </NavDropdown.Item>
+            </NavDropdown>
 
-              <textarea name="description" placeholder="Description" value={formData.description} onChange={handleChange} required></textarea>
-              <button type="submit">Create</button>
-            </form>
-
-            {error && <div className="error-message">{error}</div>}
-
-            <div className="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>User</th>
-                    <th>Amount</th>
-                    <th>Date</th>
-                    <th>Category</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {expenses.map((expense, index) => (
-                    <tr key={index}>
-                      <td>{expense.user}</td>
-                      <td>₹{expense.amount}</td>
-                      <td>{expense.date}</td>
-                      <td>{expense.category}</td>
-                      <td>{expense.description}</td>
-                      <td>
-                        <button className="delete-button" onClick={() => handleDeleteExpense(index)}>Delete</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
-
-        {activePage === "category" && (
-          <>
-            <h1 className="header">Manage Categories</h1>
-            <div className="form-container">
-              <input
-                type="text"
-                placeholder="New Category"
-                value={newCategory}
-                onChange={(e) => setNewCategory(e.target.value)}
-              />
-              <textarea
-                type="text"
-                placeholder="Category Description"
-                value={newDescription}
-                onChange={(e) => setNewDescription(e.target.value)}
-              />
-              <button onClick={handleAddCategory}>Add Category</button>
-            </div>
-            {error && <div className="error-message">{error}</div>}
-
-            <div className="table-container">
-              <table>
-                <thead>
-                  <tr>
-                    <th>Category Name</th>
-                    <th>Description</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {categories.map((category, index) => (
-                    <tr key={index}>
-                      <td>{category.name}</td>
-                      <td>{category.description}</td>
-                      <td>
-                        <button className="delete-button" onClick={() => handleDeleteCategory(index)}>Delete</button>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </>
-        )}
-      </main>
-    </div>
+            {/* Logout Button */}
+            <Nav.Link href="/" className="logout-link">
+              Logout
+            </Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
 };
 
